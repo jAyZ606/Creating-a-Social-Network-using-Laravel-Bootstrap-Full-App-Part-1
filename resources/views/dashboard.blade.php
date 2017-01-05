@@ -14,14 +14,17 @@
               <input type="hidden" value="{{ Session::token() }}" name="_token">
           </form> 
       </div>
-   </section class="row posts">
+      </section>
+   <section class="row posts">
         <div class="col-md-6 col-md-offset-3">
             <header><h3>what other people say....  </h3></header>
+            @foreach ($posts as $post)
+
+
             <article class="post">
-               <p>Lorem ipsum dolor sit amet.hula lahu nanugid ka sa iya sit.
-               </p>
+               <p>({{ $post->body }})</p>
             <div class="info">
-            	Posted by Jay on 1 january 2017
+            	Posted by {{ $post->user->first_name }} on {{$post->created_at}}
             </div>
             <div class="interaction">
             	<a href="#"> Like </a> |
@@ -30,21 +33,9 @@
             	<a href="#"> Delete </a>
             </div>
 
-            </article>
-             <article class="post">
-               <p>Lorem ipsum dolor sit amet.hula lahu nanugid ka sa iya sit.
-               </p>
-            <div class="info">
-            	Posted by Jay on 1 january 2017
-            </div>
-            <div class="interaction">
-            	<a href="#"> Like </a> |
-            	<a href="#"> Dislike </a> |
-            	<a href="#"> Edit </a> |
-            	<a href="#"> Delete</a>
-            </div>
-
-            </article>
+         </article>
+         @endforeach
+            
         </div>
    </section>
 @endsection
