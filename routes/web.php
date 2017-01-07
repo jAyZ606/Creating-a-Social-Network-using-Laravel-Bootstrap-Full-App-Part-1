@@ -39,11 +39,15 @@ Route::group(['middleware' => ['web']], function () {
     	]);
     Route::post('/createpost',[
           'uses' => 'PostController@postCreatePost',
-          'as' => 'post.create'
+          'as' => 'post.create',
+          'middleware'=>'auth'
     	]);
     Route::get('/delete=post/{post_id}', [
     	'uses' => 'PostController@getDeletePost' ,
     	'as' => 'post.delete' ,
     	'middleware'=> 'auth'
     ]);
+    Route::post('/edit', function(\Illuminate\Http\Request $request) {
+        return response()->json(['message'=> $request ['postId']]);
+    })->name('edit');
 });
